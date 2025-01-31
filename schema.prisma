@@ -1,0 +1,59 @@
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "foreignKeys"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  resumes   Resume[]
+}
+
+model Resume {
+  id          String   @id @default(cuid())
+  title       String
+  content     String   @db.Text
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  isPublished Boolean  @default(false)
+
+  @@index([userId])
+}
+
+model Education {
+  id        String   @id @default(cuid())
+  school    String
+  degree    String
+  field     String
+  startDate DateTime
+  endDate   DateTime?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
+
+model Experience {
+  id          String   @id @default(cuid())
+  company     String
+  position    String
+  location    String?
+  startDate   DateTime
+  endDate     DateTime?
+  description String   @db.Text
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+} 
