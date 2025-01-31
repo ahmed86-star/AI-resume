@@ -14,10 +14,12 @@ export interface User {
   resumes: Resume[];
 }
 
-export interface ResumeSection {
+export interface ResumeSection<T = object> {
   id: string;
-  type: 'personal' | 'education' | 'experience' | 'skills' | 'projects' | 'awards' | 'summary';
-  content: any;
+  label: string;
+  icon: React.ComponentType;
+  schema: z.ZodSchema<T>;
+  defaultValue: T;
 }
 
 export interface PersonalInfo {
@@ -58,4 +60,10 @@ export interface Project {
 export interface Skill {
   category: string;
   items: string[];
+}
+
+export interface AISuggestion {
+  suggestion: string;
+  reasoning: string;
+  implementationExample?: string;
 } 

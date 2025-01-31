@@ -28,3 +28,8 @@ yarn-error.log*
 
 # Local development
 .DS_Store
+
+# Add these exclusions
+/prisma/pscale_CA.pem
+/.env.local
+/coverage/
