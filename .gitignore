@@ -1,16 +1,17 @@
+# Dependencies
 node_modules/
 
-# Test coverage directory
-coverage/
+# Environment
+.env*
+!.env.example
 
-# Next.js build output
+# Build files
 .next/
 out/
-
-# Production build
+dist/
 build/
 
-# IDE files
+# Editor/IDE
 .idea/
 .vscode/
 *.suo
@@ -19,10 +20,8 @@ build/
 *.sln
 *.sw?
 
-# Environment files
-.env*.local
-
 # Logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
